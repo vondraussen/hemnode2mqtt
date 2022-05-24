@@ -53,7 +53,7 @@ def main():
     try:
       msg = decodeMsg(line)
     except:
-      print('decode error')
+      print('decode error', line)
 
     if msg is None:
       continue
