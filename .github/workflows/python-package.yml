@@ -22,10 +22,12 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
+      env:
+        FLIT_ROOT_INSTALL: 1
       run: |
         python -m pip install --upgrade pip
-        python -m pip install setuptools
-        python -m pip install --editable .
+        python -m pip install setuptools flit
+        flit install --deps=develop
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -34,7 +36,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        coverage run -m pytest
-    - name: Test Coverage
-      run: |
-        coverage report -m
+        pytest

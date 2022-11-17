@@ -11,7 +11,7 @@
         {
             "label": "dev install",
             "type": "shell",
-            "command": ". .venv/bin/activate && pip install --editable ."
+            "command": ". .venv/bin/activate && flit install --symlink --deps=develop"
         },
         {
             "label": "run",
@@ -21,7 +21,12 @@
         {
             "label": "test",
             "type": "shell",
-            "command": ". .venv/bin/activate && pytest -v"
+            "command": ". .venv/bin/activate && pytest -vv"
+        },
+        {
+            "label": "integration test",
+            "type": "shell",
+            "command": ". .venv/bin/activate && robot --outputdir test/logs test/integration/integration_test.robot"
         },
         {
             "label": "coverage",
