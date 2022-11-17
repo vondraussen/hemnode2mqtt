@@ -25,7 +25,10 @@ def decodeMsg(data):
 
   return msg
 
-def main():
+def parseToInfluxLine(data):
+  decodeMsg(data)
+
+def hemnoded():
   load_dotenv()
   MQTT_USER = os.getenv('HEMNODE2MQTT_MQTT_USER')
   MQTT_PW = os.getenv('HEMNODE2MQTT_MQTT_PW')
@@ -77,4 +80,4 @@ def main():
   mqttClient.disconnect
 
 if __name__ == '__main__':
-  main()
+  hemnoded()
