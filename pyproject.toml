@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hemnode2mqtt"
+version = "0.0.1"
+dependencies = [
+    "autopep8",
+    "flake8",
+    "pylint",
+    "pytest",
+    "coverage",
+    "pyserial",
+    "paho-mqtt",
+    "python-dotenv",
+    'importlib-metadata; python_version<"3.8"',
+]
+
+
+[project.scripts]
+hemnode2mqtt = "hemnode2mqtt.hemnode2mqtt:hemnoded"
