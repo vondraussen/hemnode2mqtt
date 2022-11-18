@@ -18,5 +18,15 @@
             "type": "shell",
             "command": ". .venv/bin/activate && hemnode2mqtt"
         },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": ". .venv/bin/activate && pytest -v"
+        },
+        {
+            "label": "coverage",
+            "type": "shell",
+            "command": ". .venv/bin/activate && coverage run -m pytest && coverage report -m && coverage html"
+        },
     ]
 }
