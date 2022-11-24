@@ -28,10 +28,5 @@
             "type": "shell",
             "command": ". .venv/bin/activate && robot --outputdir test/logs test/integration/integration_test.robot"
         },
-        {
-            "label": "coverage",
-            "type": "shell",
-            "command": ". .venv/bin/activate && coverage run -m pytest && coverage report -m && coverage html"
-        },
     ]
 }
