@@ -1,4 +1,4 @@
-name: Python package
+name: Integration Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
     strategy:
@@ -25,15 +25,10 @@ jobs:
       env:
         FLIT_ROOT_INSTALL: 1
       run: |
+        sudo apt install -y socat
         python -m pip install --upgrade pip
         python -m pip install setuptools flit
         flit install --deps=develop
-    - name: Lint with flake8
+    - name: Test with RobotFramework
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pytest -vv
+        robot --outputdir test/logs test/integration/integration_test.robot
