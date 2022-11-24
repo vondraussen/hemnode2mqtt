@@ -1,22 +1,35 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
 
 [project]
 name = "hemnode2mqtt"
 version = "0.0.1"
+description = "hemnode to mqtt gateway"
 dependencies = [
-    "autopep8",
-    "flake8",
-    "pylint",
-    "pytest",
-    "coverage",
-    "pyserial",
-    "paho-mqtt",
-    "python-dotenv",
-    'importlib-metadata; python_version<"3.8"',
+    "pyserial ~= 3.5",
+    "paho-mqtt ~= 1.6.1",
+    "python-dotenv ~= 0.21.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "autopep8 ~=2.0.0",
+    "flake8 ~=5.0.4",
+    "pylint ~=2.15.5",
+    "pytest-cov ~=4.0.0",
+    "toml ~=0.10.2",
+    "robotframework ~=6.0.1",
+    "robotframework-seriallibrary",
+    "robotframework-mqttlibrary",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report html --cov-report term-missing"
+# addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 95"
+
+[tool.coverage.run]
+source = ["hemnode2mqtt"]
 
 [project.scripts]
 hemnode2mqtt = "hemnode2mqtt.hemnode2mqtt:hemnoded"
